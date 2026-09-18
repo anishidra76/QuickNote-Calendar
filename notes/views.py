@@ -90,6 +90,7 @@ def delete_note(request, note_id):
 def robots_txt(request):
     content = """User-agent: *
 Allow: /
+
 Allow: /home/
 
 Disallow: /admin/
