@@ -1,8 +1,12 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 import os
+from dotenv import load_dotenv
 
 
+
+
+load_dotenv()
 
 class Command(BaseCommand):
     help = "Create the admin user if it does not exist"
@@ -10,9 +14,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         User = get_user_model()
 
-        username = "anishidra76"
-        email = "anishidradeveloper76@gmail.com"
-        password = "AH76msbaa0"
+        username = os.getenv("DJANGO_SUPERUSER_USERNAME")
+        email = os.getenv("DJANGO_SUPERUSER_EMAIL")
+        password = os.getenv("DJANGO_SUPERUSER_PASSWORD")
 
         if not username or not email or not password:
             self.stdout.write(
