@@ -91,8 +91,6 @@ def robots_txt(request):
     content = """User-agent: *
 Allow: /
 
-Allow: /home/
-
 Disallow: /admin/
 Disallow: /login/
 Disallow: /logout/
