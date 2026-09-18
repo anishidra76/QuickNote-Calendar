@@ -32,8 +32,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
+    "quicknote-calendar.onrender.com",
+    "www.quicknote-calendar.onrender.com",
 ]
 
 
@@ -145,6 +145,14 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://quicknote-calendar.onrender.com",
+]
 
 
 
