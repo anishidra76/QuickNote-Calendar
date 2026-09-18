@@ -1,0 +1,103 @@
+{% extends "notes/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+    <section class="page-header">
+        <div>
+            <h1>My Notebook</h1>
+            <p>Write it. Schedule it. Remember it.</p>
+        </div>
+    </section>
+
+    <section class="dashboard">
+
+        <!-- Add Note -->
+        <div class="note-form-card">
+            <h2>
+                {% if editing %}
+                    Edit Note
+                {% else %}
+                    New Note
+                {% endif %}
+            </h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="primary-button">
+                    {% if editing %}
+                        Save Changes
+                    {% else %}
+                        Add Note
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+
+        <!-- Calendar -->
+        <div class="calendar-card">
+            <div class="calendar-header">
+                <button id="previousMonth">‹</button>
+                <h2 id="monthYear"></h2>
+                <button id="nextMonth">›</button>
+            </div>
+            <div class="weekdays">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+            </div>
+            <div
+                id="calendar"
+                class="calendar"
+            ></div>
+        </div>
+
+    </section>
+
+
+    <!-- Notes -->
+    <section class="notes-section">
+        <div class="section-title">
+            <h2>My Notes</h2>
+            <span>{{ notes|length }} notes</span>
+        </div>
+        {% if notes %}
+            <div class="notes-list">
+                {% for note in notes %}
+                    <article class="note-card" data-date="{{ note.execution_date|date:'Y-m-d' }}" data-title="{{note.title}}">
+                        <div class="note-content">
+                            <h3>{{ note.title }}</h3>
+                            <p>{{ note.content }}</p>
+                        </div>
+                        <div class="note-footer">
+                            <time>{{ note.execution_date|date:"M d, Y" }}</time>
+                            <div class="note-actions">
+                                <a href="{% url 'edit_note' note.id %}">Edit</a>
+                                <form action="{% url 'delete_note' note.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" onclick="return confirm('Delete this note?')"> Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <h3>No notes yet</h3>
+                <p>Create your first note above.</p>
+            </div>
+        {% endif %}
+    </section>
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'notes/js/calendar.js' %}"></script>
+{% endblock %}

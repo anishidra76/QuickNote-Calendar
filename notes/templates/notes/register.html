@@ -1,0 +1,22 @@
+{% extends "notes/base.html" %}
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+        <h1>Create account</h1>
+        <p>Start organizing your notes.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="primary-button">Register</button>
+        </form>
+        <p class="auth-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}

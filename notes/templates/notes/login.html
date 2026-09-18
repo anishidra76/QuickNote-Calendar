@@ -1,0 +1,22 @@
+{% extends "notes/base.html" %}
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+        <h1>Welcome back</h1>
+        <p>Login to your QuickNote account.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="primary-button">Login</button>
+        </form>
+        <p class="auth-link">
+            Don't have an account?
+            <a href="{% url 'register' %}">Create one</a>
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}
