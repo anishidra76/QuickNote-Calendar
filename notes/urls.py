@@ -10,4 +10,5 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("note/<int:note_id>/edit/", views.edit_note, name="edit_note"),
     path("note/<int:note_id>/delete/", views.delete_note, name="delete_note"),
+    path("robots.txt", views.robots_txt, name="robots"),
 ]
