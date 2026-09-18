@@ -90,7 +90,11 @@ def delete_note(request, note_id):
 def robots_txt(request):
     content = """User-agent: *
 Allow: /
+Allow: /home/
 
+Disallow: /admin/
+Disallow: /login/
+Disallow: /logout/
 Sitemap: https://quicknote-calendar.onrender.com/sitemap.xml
 """
     return HttpResponse(content, content_type="text/plain")
