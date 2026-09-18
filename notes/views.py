@@ -92,8 +92,6 @@ def robots_txt(request):
 Allow: /
 
 Disallow: /admin/
-Disallow: /login/
-Disallow: /logout/
 Sitemap: https://quicknote-calendar.onrender.com/sitemap.xml
 """
     return HttpResponse(content, content_type="text/plain")
