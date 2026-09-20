@@ -1,6 +1,6 @@
 # Quick Note  -  Personal Notes
 
-    Video Demo: <YOUR_YOUTUBE_VIDEO_URL>
+    Video link (YouTube) : https://youtu.be/s4pdj-0nr8g
 
 
 
